@@ -1,5 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BusinessLogicService } from '@ng-mf/plop-js-business-logic';
 
 @Component({
   selector: 'ng-mf-nx-welcome',
@@ -14,6 +15,7 @@ import { CommonModule } from '@angular/common';
             <span> plop-js demo</span>
           </h1>
         </div>
+        <button (click)="demo()">call plop js bl library code</button>
       </div>
     </div>
   `,
@@ -21,5 +23,10 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None
 })
 export class NxWelcomeComponent {
-  
+  private _businessLogicService = inject(BusinessLogicService);
+
+
+  public demo(): void {
+    this._businessLogicService.hello();
+  }
 }
