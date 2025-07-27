@@ -1,0 +1,104 @@
+{
+  "moduleID": 6,
+  "actions": [
+    {
+      "actionName": "getLog",
+      "inputs": ["row"],
+      "events": ["printEvent"]
+    }
+  ],
+  "model": {
+    "type": "formMap",
+    "name": "master",
+    "modelID": 0,
+    "children": [
+      {
+        "name": "doc",
+        "type": "formMap",
+        "modelID": 1,
+        "children": [
+          {
+            "type": "formControl",
+            "name": "empty",
+            "modelItemID": 2
+          }
+        ]
+      }
+    ]
+  },
+  "structure": {
+    "type": "layout",
+    "name": "agentAssignment",
+    "placeholderID": "0",
+    "children": [
+      {
+        "type": "layout",
+        "name": "tableLayout",
+        "placeholderID": "header",
+        "config": {
+          "xs": {
+            "columns": 12,
+            "rows": 3,
+            "placeholders": []
+          }
+        },
+        "children": []
+      },
+      {
+        "type": "layout",
+        "name": "tableLayout",
+        "placeholderID": "grid",
+        "config": {
+          "xs": {
+            "columns": 12,
+            "rows": 17,
+            "placeholders": []
+          }
+        },
+        "children": []
+      },
+      {
+        "type": "layout",
+        "name": "tableLayout",
+        "placeholderID": "footer",
+        "config": {
+          "xs": {
+            "columns": 12,
+            "rows": 2,
+            "placeholders": [
+              { "columns": 8, "rows": 1, "name": "empty" },
+              { "columns": 2, "rows": 1, "name": "btnAssegna" },
+              { "columns": 2, "rows": 1, "name": "agentList" }
+            ]
+          }
+        },
+        "children": [
+          {
+            "type": "formItem",
+            "name": "formButton",
+            "placeholderID": "btnAssegna",
+            "formItemID": 1,
+            "label": "Assegna",
+            "config": {
+              "inputType": "button",
+              "action": "submitEvent",
+              "type": "flat",
+              "colorTheme": "primary"
+            }
+          },
+          {
+            "type": "formItem",
+            "name": "listRadioMultiSelect",
+            "placeholderID": "agentList",
+            "formItemID": 1,
+            "label": " ",
+            "config": {
+              "backgroundColor": "green",
+              "dropdownPosition": "top"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

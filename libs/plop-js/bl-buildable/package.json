@@ -1,0 +1,17 @@
+{
+  "name": "@ng-mf/plop-js/bl-buildable",
+  "version": "0.0.1",
+  "scripts": {
+    "gen:component": "node generate-component.js app-custom-component src/app/components",
+    "gen:parse_json_assignment_agent_to_component": "node generate-component-from-json assignment-agent-component src/assets/agentAssignment.json"
+  },
+  "peerDependencies": {
+    "@angular/common": "18.0.4",
+    "@angular/core": "18.0.4"
+  },
+  "sideEffects": false,
+  "devDependencies": {
+    "node-plop": "^0.32.0",
+    "plop": "^4.0.1"
+  }
+}
