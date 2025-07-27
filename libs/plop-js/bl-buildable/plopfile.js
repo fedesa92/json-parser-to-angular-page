@@ -1,3 +1,6 @@
+const path = require('path');
+const fs = require('fs');
+
 // version with prompt into terminal
 // module.exports = function (plop) {
 //   plop.setGenerator('component', {
@@ -40,9 +43,9 @@
 //   });
 // };
 
-
 // version with script
 module.exports = function (plop) {
+  plop.setHelper('json', obj => JSON.stringify(obj, null, 2));
   plop.setGenerator('component', {
     description: 'Genera un componente Angular',
     prompts: [], // no interazione
@@ -75,5 +78,65 @@ module.exports = function (plop) {
         }
       ];
     },
+  });
+  plop.setGenerator('jsonParse', {
+    description: 'generate parsing JSON to assignment page',
+    prompts: [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Nome componente:',
+      },
+      {
+        type: 'input',
+        name: 'jsonPath',
+        message: 'Percorso JSON:',
+      }
+    ],
+    actions: function(data) {
+      const fullPath = path.resolve(data.jsonPath);
+
+      if (!fs.existsSync(fullPath)) {
+        throw new Error(`JSON file not found at: ${fullPath}`);
+      }
+
+      const rawJson = fs.readFileSync(fullPath, 'utf8');
+      const configJson = JSON.parse(rawJson);
+
+      // layout footer 
+      const footer = configJson.structure.children.find(c => c.placeholderID === 'footer');
+      const formItems = footer && footer.children ? footer.children.map(i => ({
+        type: i.type,
+        name: i.name,
+        label: i.label,
+        config: i.config || {}
+      })) : [];
+
+      // grid component
+      const grid = configJson.structure.children.find(c => c.placeholderID === 'grid');
+      const gridChildren = grid && grid.children ? grid.children : [];
+
+      // add return data used on templates with {{{ }}} 
+      data.formItems = formItems;
+      data.gridChildren = gridChildren;
+
+      return [
+        {
+          type: 'add',
+          path: `src/app/${data.name}/${data.name}.component.ts`,
+          templateFile: 'templates/json-parse/component.ts.hbs'
+        },
+        {
+          type: 'add',
+          path: `src/app/${data.name}/${data.name}.component.html`,
+          templateFile: 'templates/json-parse/component.html.hbs'
+        },
+        {
+          type: 'add',
+          path: `src/app/${data.name}/${data.name}.component.scss`,
+          templateFile: 'templates/json-parse/component.scss.hbs'
+        }
+      ];
+    }
   });
 };
