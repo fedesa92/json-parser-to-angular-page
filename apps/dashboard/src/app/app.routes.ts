@@ -4,9 +4,14 @@ import { AppComponent } from './app.component';
 
 export const appRoutes: Route[] = [
   {
+    path: 'plop-js',
+    loadChildren: () =>
+      loadRemoteModule('plop-js', './Routes').then((m) => m.remoteRoutes)
+  },
+  {
     path: 'login',
     loadChildren: () =>
-      loadRemoteModule('login', './Routes').then((m) => m.remoteRoutes),
+      loadRemoteModule('login', './Routes').then((m) => m.remoteRoutes)
   },
   {
     path: '',

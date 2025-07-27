@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dbg": "npx nx serve employee"
+    "dbg": "npx nx serve employee",
+    "run:plop-js": "npx nx serve plop-js"
   },
   "private": true,
   "dependencies": {
