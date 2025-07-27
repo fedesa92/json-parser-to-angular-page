@@ -1,0 +1,16 @@
+{
+  "name": "@ng-mf/plop-js/bl-buildable",
+  "version": "0.0.1",
+  "scripts": {
+    "gen:component": "node generate-component.js custom-app src/app/components"
+  },
+  "peerDependencies": {
+    "@angular/common": "18.0.4",
+    "@angular/core": "18.0.4"
+  },
+  "sideEffects": false,
+  "devDependencies": {
+    "node-plop": "^0.32.0",
+    "plop": "^4.0.1"
+  }
+}

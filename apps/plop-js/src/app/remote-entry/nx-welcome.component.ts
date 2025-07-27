@@ -1,11 +1,11 @@
 import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BusinessLogicService } from '@ng-mf/plop-js-business-logic';
-
+import { PlopJsBlBuildableComponent } from '@ng-mf/plop-js/bl-buildable';
 @Component({
   selector: 'ng-mf-nx-welcome',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PlopJsBlBuildableComponent],
   template: `
     <div class="wrapper">
       <div class="container">
@@ -16,6 +16,9 @@ import { BusinessLogicService } from '@ng-mf/plop-js-business-logic';
           </h1>
         </div>
         <button (click)="demo()">call plop js bl library code</button>
+        <section>
+          <lib-plop-js-bl-buildable></lib-plop-js-bl-buildable>
+        </section>
       </div>
     </div>
   `,
